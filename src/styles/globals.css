@@ -1,0 +1,197 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+:root {
+  /* ── Palette ── */
+  --color-ivory: #F5F1EA;
+  --color-white-warm: #FCFAF7;
+  --color-stone: #D8D0C4;
+  --color-charcoal: #171716;
+  --color-wood-dark: #4B3020;
+  --color-gold-mat: #B99A67;
+
+  /* ── Dark Luxury Palette ── */
+  --dark-void: #060611;
+  --dark-surface: #0C0C20;
+  --dark-elevated: #14142E;
+  --dark-border: #1E1E3A;
+  --text-light: #F5F1EA;
+  --text-mid: #8A8A8A;
+  --text-dim: #4A4A4A;
+  --accent-gold: #B99A67;
+  --accent-gold-dim: rgba(185, 154, 103, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --glass-hover: rgba(255, 255, 255, 0.06);
+
+  /* ── Typography ── */
+  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Golden Ratio Scale (base 18px, φ = 1.618) ── */
+  --fs-xs: 0.667rem;
+  --fs-sm: 0.833rem;
+  --fs-base: 1.111rem;
+  --fs-md: 1.444rem;
+  --fs-lg: 1.778rem;
+  --fs-xl: 2.667rem;
+  --fs-2xl: 4rem;
+  --fs-3xl: 6.444rem;
+
+  /* ── Easing ── */
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-smooth: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-museum: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-kinetic: cubic-bezier(0.12, 0.8, 0.3, 1);
+
+  /* ── Durations ── */
+  --dur-fast: 300ms;
+  --dur-normal: 500ms;
+  --dur-slow: 800ms;
+  --dur-crawl: 1200ms;
+
+  /* ── Spacing ── */
+  --page-padding: clamp(1.5rem, 4vw, 5rem);
+  --max-width: 1440px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--dark-void);
+  color: var(--text-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Page transition wrapper */
+.page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════════════════════
+   RTL SUPPORT (Arabic)
+   ══════════════════════════════════════════════════════════ */
+
+[dir="rtl"] {
+  font-family: 'Manrope', 'Noto Sans Arabic', 'Arial', sans-serif;
+}
+
+[dir="rtl"] .topbar__nav {
+  direction: rtl;
+}
+
+[dir="rtl"] .topbar__cta {
+  direction: rtl;
+}
+
+/* Flip navigation arrows for RTL */
+[dir="rtl"] .profile-carousel__nav-btn--prev {
+  left: auto;
+  right: 16px;
+}
+
+[dir="rtl"] .profile-carousel__nav-btn--next {
+  right: auto;
+  left: 16px;
+}
+
+/* Responsive RTL */
+@media (max-width: 768px) {
+  [dir="rtl"] .profile-carousel__nav-btn--prev {
+    right: 8px;
+    left: auto;
+  }
+  [dir="rtl"] .profile-carousel__nav-btn--next {
+    left: 8px;
+    right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  [dir="rtl"] .profile-carousel__nav-btn--prev {
+    right: 6px;
+    left: auto;
+  }
+  [dir="rtl"] .profile-carousel__nav-btn--next {
+    left: 6px;
+    right: auto;
+  }
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.4s var(--ease-smooth),
+    transform 0.4s var(--ease-smooth);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--dark-border);
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(185, 154, 103, 0.2);
+  color: var(--text-light);
+}
