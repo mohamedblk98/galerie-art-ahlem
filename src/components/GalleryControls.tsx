@@ -34,8 +34,8 @@ export default function GalleryControls({
   return (
     <div className="gallery-ui">
       <div className="gallery-topbar">
-        <div className="gallery-logo" aria-label="Atelier Gallery">
-          <img src="/logo.png" alt="Atelier Gallery" className="gallery-logo-img" />
+        <div className="gallery-logo" aria-label="Galerie">
+          <img src="/logo.png" alt="Galerie" className="gallery-logo-img" />
         </div>
         <a href="/artistes" className="gallery-back">
           {t('gallery_back')}

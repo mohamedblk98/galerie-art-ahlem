@@ -134,14 +134,15 @@ export default function AproposPage() {
       <header className="topbar">
         <div className="topbar__left">
           <Link to="/" className="topbar__logo">
-            <img src="/logo.png" alt="Atelier" className="topbar__logo-img" style={{ height: '60px', width: 'auto' }} />
+            <img src="/logo.png" alt="Galerie" className="topbar__logo-img" style={{ height: '60px', width: 'auto' }} />
           </Link>
         </div>
         <nav className="topbar__nav" aria-label="Navigation">
           <Link to="/" className="topbar__link">{t('nav_home')}</Link>
           <Link to="/artistes" className="topbar__link">{t('nav_artists')}</Link>
           <Link to="/apropos" className="topbar__link topbar__link--active">{t('nav_about')}</Link>
-          <Link to="/" className="topbar__link">{t('nav_exhibitions')}</Link>
+          <Link to="/expositions" className="topbar__link">{t('nav_exhibitions')}</Link>
+          <Link to="/contact" className="topbar__link">{t('nav_contact')}</Link>
         </nav>
         <div className="topbar__right">
           <LanguageSwitcher />
@@ -281,7 +282,7 @@ export default function AproposPage() {
               <Link to="/artistes" className="apropos-cta__btn apropos-cta__btn--primary">
                 {t('apropos_cta_discover')}
               </Link>
-              <a href="mailto:contact@atelier-gallery.com" className="apropos-cta__btn apropos-cta__btn--secondary">
+              <a href="mailto:contact@galerie-gallery.com" className="apropos-cta__btn apropos-cta__btn--secondary">
                 {t('apropos_cta_contact')}
               </a>
             </div>
@@ -296,9 +297,9 @@ export default function AproposPage() {
         <div className="home-footer__grid">
           <div className="home-footer__brand">
             <div className="home-footer__logo-mark">
-              <img src="/logod.png" alt="Atelier d'art Ahlem" className="home-footer__logo-img" />
+              <img src="/logod.png" alt="Galerie d'art Ahlem" className="home-footer__logo-img" />
             </div>
-            <p className="home-footer__logo-name">Atelier d'art Ahlem</p>
+            <p className="home-footer__logo-name">Galerie d'art Ahlem</p>
           </div>
           <div className="home-footer__col">
             <h4 className="home-footer__heading">{t('footer_nav')}</h4>
@@ -308,11 +309,9 @@ export default function AproposPage() {
           </div>
           <div className="home-footer__col">
             <h4 className="home-footer__heading">{t('footer_contact')}</h4>
-            <span className="home-footer__text">{t('footer_address_1')}</span>
             <span className="home-footer__text">{t('footer_address_2')}</span>
-            <span className="home-footer__text">{t('footer_address_3')}</span>
-            <a href="mailto:contact@atelier-gallery.com" className="home-footer__link">
-              contact@atelier-gallery.com
+            <a href="mailto:contact@galerie-gallery.com" className="home-footer__link">
+              contact@galerie-gallery.com
             </a>
           </div>
           <div className="home-footer__col">
@@ -324,7 +323,7 @@ export default function AproposPage() {
         </div>
         <div className="home-footer__bottom">
           <span className="home-footer__copyright">
-            © 2026 Atelier d'Art Ahlem. {t('footer_copyright').replace('© 2026 Atelier Gallery. ', '')}
+            © 2026 Galerie d'Art Ahlem. {t('footer_copyright').replace('© 2026 Galerie. ', '')}
           </span>
         </div>
       </footer>

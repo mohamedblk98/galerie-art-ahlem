@@ -19,3 +19,16 @@ export interface Artist {
   portrait: string;
   oeuvres: Artwork[];
 }
+
+export interface Exposition {
+  id: string;
+  titleKey: string;
+  descKey: string;
+  artistsKey: string;
+  image: string;
+  lieuKey: string;
+  dateDebut: string;
+  dateFin: string;
+  status: 'current' | 'upcoming' | 'past';
+  slug?: string;
+}

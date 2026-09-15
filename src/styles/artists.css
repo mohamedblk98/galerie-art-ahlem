@@ -1,4 +1,4 @@
-﻿/* ================================================================
+/* ================================================================
    ARTISTS PAGE — Fullscreen Immersive 3D Gallery · Dark Luxury
    100vw × 100vh · No scroll · Carousel fills viewport
    ================================================================ */
@@ -10,8 +10,8 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(165deg, #FFFFFF 0%, #F8F9FA 25%, #E9ECEF 50%, #DEE2E6 75%, #CED4DA 100%);
-  color: #212529;
+  background: #FFFFFF;
+  color: var(--ink);
   opacity: 0;
   transition: opacity 1s var(--ease-museum);
   cursor: default;
@@ -82,14 +82,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 12vh;
+  height: clamp(68px, 10vh, 96px);
   padding: 0 var(--page-padding);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 99999;
-  background: #b59662;
+  background: var(--topbar-bg);
   pointer-events: none;
 }
 
@@ -101,7 +101,7 @@
   font-weight: 500;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #212529;
+  color: var(--ink);
   transition: opacity 0.4s ease;
   text-decoration: none;
 }
@@ -109,7 +109,7 @@
 .artists-page .topbar__logo:hover { opacity: 0.5; }
 
 .artists-page .topbar__logo-img {
-  height: 80px;
+  height: clamp(46px, 7.5vh, 72px);
   width: auto;
   display: block;
   opacity: 0.85;
@@ -129,77 +129,101 @@
 .artists-page .topbar__link {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #FFFFFF;
-  opacity: 0.85;
-  transition: opacity 0.4s ease, color 0.4s ease;
+  color: rgba(255, 253, 246, 0.85);
+  transition: color 0.3s var(--ease-smooth);
   position: relative;
   text-decoration: none;
+  padding: 0.35rem 0;
+  text-shadow: 0 1px 8px rgba(126, 90, 14, 0.25);
 }
 
 .artists-page .topbar__link::after {
   content: '';
   position: absolute;
-  bottom: -3px;
-  left: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
-  height: 1px;
-  background: var(--accent-gold);
-  opacity: 0.5;
-  transition: width 0.5s var(--ease-out-expo);
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #E8C659, #FFFDF6);
+  box-shadow: 0 0 8px rgba(222, 178, 66, 0.7);
+  transition: width 0.35s var(--ease-out-expo);
 }
 
-.artists-page .topbar__link:hover,
-.artists-page .topbar__link--active { opacity: 1; color: #FFFFFF; }
+.artists-page .topbar__link:hover {
+  color: #FFFDF6;
+}
+
+.artists-page .topbar__link--active { color: #FFFFFF; }
 .artists-page .topbar__link--active::after,
 .artists-page .topbar__link:hover::after { width: 100%; }
 
 .artists-page .topbar__cta {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #FFFFFF;
-  padding: 0.55rem 1.4rem;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #FFFDF6;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  border: 1px solid rgba(255, 253, 246, 0.45);
   border-radius: 100px;
-  background: transparent;
+  background: rgba(36, 28, 16, 0.38);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
   text-decoration: none;
-  transition: border-color 0.4s ease, background 0.4s ease;
+  transition: all 0.35s var(--ease-smooth);
 }
 
 .artists-page .topbar__cta:hover {
-  border-color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.1);
+  color: #7A5C10;
+  background: #FFFDF6;
+  border-color: #FFFDF6;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(132, 96, 16, 0.35);
 }
 
 /* ─────────────────────── LANGUAGE SWITCHER ─────────────────────── */
 
 .artists-page .lang-switcher {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  height: 38px;
+  border: 1px solid rgba(255, 253, 246, 0.4);
   border-radius: 100px;
   overflow: hidden;
-  margin-right: 1rem;
+  margin-right: 0.9rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .artists-page .lang-switcher__btn {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 253, 246, 0.75);
   background: transparent;
   border: none;
-  padding: 0.35rem 0.65rem;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.85rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--ease-smooth);
 }
 
 .artists-page .lang-switcher__btn:hover {
@@ -207,8 +231,10 @@
 }
 
 .artists-page .lang-switcher__btn--active {
-  color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.15);
+  color: #7A5C10;
+  background: #FFFDF6;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(132, 96, 16, 0.25);
 }
 
 /* ─────────────────────── HERO — compact overlay top-left ─────────────────────── */
@@ -254,7 +280,7 @@
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #212529;
+  color: var(--ink);
   line-height: 1;
   margin-bottom: 0.8rem;
   opacity: 0;
@@ -265,7 +291,7 @@
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 400;
-  color: #6C757D;
+  color: var(--muted);
   letter-spacing: 0.04em;
   line-height: 1.85;
   opacity: 0;
@@ -382,11 +408,11 @@
 /* ── Gallery Button — gold filled gradient ── */
 .carousel3d-hovercard__btn--gallery {
   color: #0a0a0a;
-  background: linear-gradient(135deg, #C9A96E 0%, #B99A67 40%, #A68553 100%);
+  background: linear-gradient(135deg, #DBAE39 0%, #D2A02A 40%, #A67C15 100%);
   border: none;
   border-radius: 100px;
   box-shadow:
-    0 2px 12px rgba(185, 154, 103, 0.35),
+    0 2px 12px rgba(206, 158, 40, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
@@ -402,9 +428,9 @@
 .carousel3d-hovercard__btn--gallery:hover {
   transform: scale(1.06);
   box-shadow:
-    0 4px 24px rgba(185, 154, 103, 0.5),
+    0 4px 24px rgba(206, 158, 40, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  background: linear-gradient(135deg, #D4B87A 0%, #C9A96E 40%, #B99A67 100%);
+  background: linear-gradient(135deg, #D4B87A 0%, #DBAE39 40%, #D2A02A 100%);
 }
 
 .carousel3d-hovercard__btn--gallery:hover svg {
@@ -414,7 +440,7 @@
 
 /* ── Info Button — glass outline ── */
 .carousel3d-hovercard__btn--info {
-  color: #212529;
+  color: var(--ink);
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -428,7 +454,7 @@
   border-color: rgba(0, 0, 0, 0.15);
   background: rgba(255, 255, 255, 1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-  color: #212529;
+  color: var(--ink);
 }
 
 .carousel3d-hovercard__btn--info:hover svg {
@@ -451,7 +477,7 @@
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #ADB5BD;
+  color: var(--muted-soft);
   pointer-events: none;
   z-index: 10;
   opacity: 0;
@@ -485,13 +511,13 @@
   font-size: var(--fs-md);
   font-weight: 400;
   letter-spacing: 0.08em;
-  color: #212529;
+  color: var(--ink);
 }
 
 .carousel3d-counter__sep {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  color: #ADB5BD;
+  color: var(--muted-soft);
   opacity: 0.5;
 }
 
@@ -500,7 +526,7 @@
   font-size: var(--fs-xs);
   font-weight: 400;
   letter-spacing: 0.08em;
-  color: #6C757D;
+  color: var(--muted);
 }
 
 /* ─────────────────────── BOTTOM INFO — active artist tag ─────────────────────── */
@@ -538,7 +564,7 @@
   font-size: var(--fs-md);
   font-weight: 300;
   letter-spacing: 0.06em;
-  color: #212529;
+  color: var(--ink);
 }
 
 /* ─────────────────────── FOOTER — thin bottom bar ─────────────────────── */
@@ -651,7 +677,7 @@
   font-size: clamp(2rem, 4vw, 3rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #212529;
+  color: var(--ink);
   margin: 0 0 0.5rem;
 }
 
@@ -659,7 +685,7 @@
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 400;
-  color: #6C757D;
+  color: var(--muted);
   letter-spacing: 0.02em;
   margin: 0;
 }
@@ -970,7 +996,7 @@
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 400;
-  color: #6C757D;
+  color: var(--muted);
   line-height: 1.8;
   margin: 0 0 1.5rem;
 }
@@ -1006,16 +1032,16 @@
 
 .profile-carousel__btn--gallery {
   color: #0a0a0a;
-  background: linear-gradient(135deg, #C9A96E 0%, #B99A67 40%, #A68553 100%);
+  background: linear-gradient(135deg, #DBAE39 0%, #D2A02A 40%, #A67C15 100%);
   box-shadow:
-    0 2px 12px rgba(185, 154, 103, 0.35),
+    0 2px 12px rgba(206, 158, 40, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .profile-carousel__btn--gallery:hover {
   transform: scale(1.05);
   box-shadow:
-    0 4px 24px rgba(185, 154, 103, 0.5),
+    0 4px 24px rgba(206, 158, 40, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
@@ -1024,7 +1050,7 @@
 }
 
 .profile-carousel__btn--info {
-  color: #212529;
+  color: var(--ink);
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -1050,7 +1076,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #CED4DA;
+  background: #D8CBB2;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1064,7 +1090,7 @@
 }
 
 .profile-carousel__dot:hover:not(.profile-carousel__dot--active) {
-  background: #ADB5BD;
+  background: var(--muted-soft);
 }
 
 /* ══════════════════════════════════════════════════════════

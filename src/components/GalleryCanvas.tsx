@@ -32,7 +32,7 @@ function CanvasLoader() {
     <mesh position={[0, 0, 0]}>
       {/* Barre fine dorée semi-transparente pour indiquer le chargement */}
       <planeGeometry args={[0.6, 0.02]} />
-      <meshBasicMaterial color="#B99A67" transparent opacity={0.18} />
+      <meshBasicMaterial color="#D2A02A" transparent opacity={0.18} />
     </mesh>
   );
 }
@@ -89,7 +89,6 @@ function InteractiveFrames({
           onClick={(e) => {
             e.stopPropagation();
             if (i === activeIndex) {
-              console.log('[Gallery] click tableau', i, art.title);
               onFrameClick?.(i);
             }
           }}

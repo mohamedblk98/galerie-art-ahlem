@@ -7,8 +7,10 @@ interface Props {
 }
 
 /**
- * Full-screen loading overlay with spinning logo + progress bar.
- * Simulates loading progress from 0 → 100%, then fades out.
+ * Full-screen cinematic loading overlay.
+ * Opening: gold curtains slide in + content reveals with zoom/blur.
+ * Closing: content lifts away, then the two gold panels split apart
+ * like theater curtains to reveal the site.
  */
 export default function LoadingScreen({ onComplete }: Props) {
   const { t } = useTranslation();
@@ -20,8 +22,8 @@ export default function LoadingScreen({ onComplete }: Props) {
     done.current = false;
     let elapsed = 0;
     const step = 20; // ms per tick
-    const total = 1400; // ms total
-    const increment = (step / total) * 100;
+    const total = 1500; // ms total — long enough for the show, short enough for navigation
+    void step; void total;
 
     const id = setInterval(() => {
       if (done.current) return;
@@ -32,8 +34,10 @@ export default function LoadingScreen({ onComplete }: Props) {
       if (pct >= 100) {
         clearInterval(id);
         done.current = true;
-        setTimeout(() => setFading(true), 250);
-        setTimeout(() => onComplete(), 800);
+        // Let the "100%" + bar glow register, then open the curtains
+        setTimeout(() => setFading(true), 400);
+        // Curtain choreography finishes ~1.45s after fading starts
+        setTimeout(() => onComplete(), 1750);
       }
     }, step);
 
@@ -41,20 +45,28 @@ export default function LoadingScreen({ onComplete }: Props) {
   }, [onComplete]);
 
   return (
-    <div className={`loading-screen ${fading ? 'loading-screen--fade' : ''}`}>
+    <div
+      className={`loading-screen ${fading ? 'loading-screen--fade' : ''}`}
+      aria-hidden={fading}
+    >
       <div className="loading-screen__content">
         <img
           src="/logo.png"
           alt={t('loading')}
           className="loading-screen__logo"
         />
-        <span className="loading-screen__pct">{progress}%</span>
+        <span className="loading-screen__pct">
+          {progress}
+          <span className="loading-screen__pct-sign">%</span>
+        </span>
+        <span className="loading-screen__tag">{t('loading')}</span>
       </div>
       <div className="loading-screen__bar">
         <div
           className="loading-screen__fill"
           style={{ width: `${progress}%` }}
         />
+        <div className="loading-screen__bar-glow" style={{ left: `${progress}%` }} />
       </div>
     </div>
   );

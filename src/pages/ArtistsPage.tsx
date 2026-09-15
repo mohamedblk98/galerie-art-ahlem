@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Artists from '../data/artists';
 import ProfileCarousel from '../components/ProfileCarousel';
@@ -14,6 +14,18 @@ export default function ArtistsPage() {
   const { t } = useTranslation();
   const [, setActiveIdx] = useState(0);
   const [visible, setVisible] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    const onOpen = () => setModalOpen(true);
+    const onClose = () => setModalOpen(false);
+    window.addEventListener('artist-modal-open', onOpen);
+    window.addEventListener('artist-modal-close', onClose);
+    return () => {
+      window.removeEventListener('artist-modal-open', onOpen);
+      window.removeEventListener('artist-modal-close', onClose);
+    };
+  }, []);
 
   useEffect(() => {
     const rafId = requestAnimationFrame(() => setVisible(true));
@@ -31,13 +43,15 @@ export default function ArtistsPage() {
       <header className="topbar">
         <div className="topbar__left">
           <Link to="/" className="topbar__logo">
-            <img src="/logo.png" alt="Atelier Gallery" className="topbar__logo-img" />
+            <img src="/logo.png" alt="Galerie Gallery" className="topbar__logo-img" />
           </Link>
         </div>
         <nav className="topbar__nav" aria-label="Navigation">
           <Link to="/" className="topbar__link">{t('nav_home')}</Link>
           <Link to="/artistes" className="topbar__link topbar__link--active">{t('nav_artists')}</Link>
           <Link to="/apropos" className="topbar__link">{t('nav_about')}</Link>
+          <Link to="/expositions" className="topbar__link">{t('nav_exhibitions')}</Link>
+          <Link to="/contact" className="topbar__link">{t('nav_contact')}</Link>
         </nav>
         <div className="topbar__right">
           <LanguageSwitcher />
@@ -54,15 +68,17 @@ export default function ArtistsPage() {
       </div>
 
       {/* ── Hero — compact overlay top left ── */}
-      <section className="hero hero--overlay" id="artistes">
-        <h1 className="hero__title">{t('artists_title')}</h1>
-        <p className="hero__subtitle">
-          {t('artists_subtitle').split('—').length > 1
-            ? <>{t('artists_subtitle').split('—')[0]}—<br />{t('artists_subtitle').split('—')[1]}</>
-            : t('artists_subtitle')
-          }
-        </p>
-      </section>
+      {!modalOpen && (
+        <section className="hero hero--overlay" id="artistes">
+          <h1 className="hero__title">{t('artists_title')}</h1>
+          <p className="hero__subtitle">
+            {t('artists_subtitle').split('—').length > 1
+              ? <>{t('artists_subtitle').split('—')[0]}—<br />{t('artists_subtitle').split('—')[1]}</>
+              : t('artists_subtitle')
+            }
+          </p>
+        </section>
+      )}
 
       {/* ── Profile Carousel — Interactive Focus Effect ── */}
       <section className="carousel-section" aria-label={t('artists_aria')}>

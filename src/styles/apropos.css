@@ -9,8 +9,8 @@
   position: relative;
   width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(165deg, #FFFFFF 0%, #F8F9FA 25%, #E9ECEF 50%, #DEE2E6 75%, #CED4DA 100%);
-  color: #212529;
+  background: #FFFFFF;
+  color: var(--ink);
   opacity: 0;
   transition: opacity 1s var(--ease-museum);
   cursor: default;
@@ -62,12 +62,12 @@
   left: 0;
   right: 0;
   z-index: 99999;
-  height: 12vh;
+  height: clamp(68px, 10vh, 96px);
   padding: 0 var(--page-padding);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #b59662;
+  background: var(--topbar-bg);
 }
 
 .apropos-page .topbar__left {
@@ -107,35 +107,41 @@
 .apropos-page .topbar__link {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #FFFFFF;
-  opacity: 0.85;
+  color: rgba(255, 253, 246, 0.85);
   text-decoration: none;
   position: relative;
-  transition: opacity 0.3s ease, color 0.3s ease;
+  padding: 0.35rem 0;
+  transition: color 0.3s var(--ease-smooth);
+  text-shadow: 0 1px 8px rgba(126, 90, 14, 0.25);
 }
 
 .apropos-page .topbar__link::after {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 0;
-  height: 1px;
-  background: #FFFFFF;
-  transition: width 0.3s var(--ease-out-expo);
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #E8C659, #FFFDF6);
+  box-shadow: 0 0 8px rgba(222, 178, 66, 0.7);
+  transition: width 0.35s var(--ease-out-expo);
 }
 
-.apropos-page .topbar__link:hover,
+.apropos-page .topbar__link:hover {
+  color: #FFFDF6;
+}
+
 .apropos-page .topbar__link--active {
-  opacity: 1;
   color: #FFFFFF;
 }
 
-.apropos-page .topbar__link:hover::after,
-.apropos-page .topbar__link--active::after {
+.apropos-page .topbar__link--active::after,
+.apropos-page .topbar__link:hover::after {
   width: 100%;
 }
 
@@ -147,47 +153,65 @@
 .apropos-page .topbar__cta {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: #FFFDF6;
   text-decoration: none;
-  padding: 0.55rem 1.4rem;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem;
+  border: 1px solid rgba(255, 253, 246, 0.45);
   border-radius: 100px;
-  background: transparent;
-  transition: border-color 0.3s ease, background 0.3s ease;
+  background: rgba(36, 28, 16, 0.38);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.35s var(--ease-smooth);
 }
 
 .apropos-page .topbar__cta:hover {
-  border-color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.1);
+  color: #7A5C10;
+  background: #FFFDF6;
+  border-color: #FFFDF6;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(132, 96, 16, 0.35);
 }
 
 /* ── Language Switcher ── */
 
 .apropos-page .lang-switcher {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  height: 38px;
+  border: 1px solid rgba(255, 253, 246, 0.4);
   border-radius: 100px;
   overflow: hidden;
-  margin-right: 1rem;
+  margin-right: 0.9rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .apropos-page .lang-switcher__btn {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 253, 246, 0.75);
   background: transparent;
   border: none;
-  padding: 0.35rem 0.65rem;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.85rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--ease-smooth);
 }
 
 .apropos-page .lang-switcher__btn:hover {
@@ -195,8 +219,10 @@
 }
 
 .apropos-page .lang-switcher__btn--active {
-  color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.15);
+  color: #7A5C10;
+  background: #FFFDF6;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(132, 96, 16, 0.25);
 }
 
 /* ─────────────────────── SHARED SECTION STYLES ─────────────────────── */
@@ -250,7 +276,7 @@
   font-size: clamp(2rem, 5vw, 3.5rem);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #212529;
+  color: var(--ink);
   line-height: 1.1;
   margin-bottom: 1.2rem;
 }
@@ -351,8 +377,8 @@
 }
 
 .apropos-hero__title-line--black {
-  color: #212529;
-  -webkit-text-fill-color: #212529;
+  color: var(--ink);
+  -webkit-text-fill-color: var(--ink);
   display: block;
 }
 
@@ -360,7 +386,7 @@
   font-family: var(--font-sans);
   font-size: clamp(var(--fs-sm), 1.4vw, var(--fs-base));
   font-weight: 300;
-  color: #6C757D;
+  color: var(--muted);
   letter-spacing: 0.03em;
   line-height: 1.9;
   max-width: 520px;
@@ -397,7 +423,7 @@
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 300;
-  color: #6C757D;
+  color: var(--muted);
   line-height: 1.9;
   margin-bottom: 1.2rem;
 }
@@ -406,7 +432,7 @@
   font-family: var(--font-serif);
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 400;
-  color: #212529;
+  color: var(--ink);
   letter-spacing: 0.04em;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -441,7 +467,7 @@
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #ADB5BD;
+  color: var(--muted-soft);
 }
 
 /* Visual frame */
@@ -463,7 +489,7 @@
   width: 100%;
   height: 100%;
   position: relative;
-  background: #E9ECEF;
+  background: #F1E9DB;
   overflow: hidden;
 }
 
@@ -509,7 +535,7 @@
 
 .apropos-values__card:hover {
   transform: translateY(-6px);
-  border-color: rgba(185, 154, 103, 0.25);
+  border-color: rgba(206, 158, 40, 0.25);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
 }
 
@@ -523,7 +549,7 @@
   font-family: var(--font-serif);
   font-size: 1.3rem;
   font-weight: 400;
-  color: #212529;
+  color: var(--ink);
   letter-spacing: 0.04em;
   margin-bottom: 0.8rem;
 }
@@ -532,7 +558,7 @@
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 300;
-  color: #6C757D;
+  color: var(--muted);
   line-height: 1.8;
 }
 
@@ -559,7 +585,7 @@
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
   font-weight: 300;
-  color: #6C757D;
+  color: var(--muted);
   line-height: 1.8;
   max-width: 400px;
   margin-bottom: 0.5rem;
@@ -588,23 +614,23 @@
 
 .apropos-cta__btn--primary {
   color: #0a0a0a;
-  background: linear-gradient(135deg, #C9A96E 0%, #B99A67 40%, #A68553 100%);
+  background: linear-gradient(135deg, #DBAE39 0%, #D2A02A 40%, #A67C15 100%);
   border: none;
 }
 
 .apropos-cta__btn--primary:hover {
   transform: scale(1.04);
-  box-shadow: 0 4px 20px rgba(185, 154, 103, 0.35);
+  box-shadow: 0 4px 20px rgba(206, 158, 40, 0.35);
 }
 
 .apropos-cta__btn--secondary {
-  color: #6C757D;
+  color: var(--muted);
   border: 1px solid rgba(0, 0, 0, 0.12);
   background: rgba(255, 255, 255, 0.6);
 }
 
 .apropos-cta__btn--secondary:hover {
-  color: #212529;
+  color: var(--ink);
   border-color: rgba(0, 0, 0, 0.2);
   background: rgba(255, 255, 255, 0.9);
 }

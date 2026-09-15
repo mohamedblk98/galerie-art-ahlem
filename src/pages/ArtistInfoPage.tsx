@@ -1,4 +1,4 @@
-﻿import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Artists from '../data/artists';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { useTranslation } from '../i18n';
@@ -33,13 +33,15 @@ export default function ArtistInfoPage() {
       <header className="topbar">
         <div className="topbar__left">
           <Link to="/" className="topbar__logo">
-            <img src="/logo.png" alt="Atelier Gallery" className="topbar__logo-img" />
+            <img src="/logo.png" alt="Galerie Gallery" className="topbar__logo-img" />
           </Link>
         </div>
         <nav className="topbar__nav" aria-label="Navigation">
+          <Link to="/" className="topbar__link">{t('nav_home')}</Link>
           <Link to="/artistes" className="topbar__link">{t('nav_artists')}</Link>
-          <a href="#expositions" className="topbar__link">{t('nav_exhibitions')}</a>
-          <a href="#apropos" className="topbar__link">{t('nav_about')}</a>
+          <Link to="/apropos" className="topbar__link">{t('nav_about')}</Link>
+          <Link to="/expositions" className="topbar__link">{t('nav_exhibitions')}</Link>
+          <Link to="/contact" className="topbar__link">{t('nav_contact')}</Link>
         </nav>
         <div className="topbar__right">
           <LanguageSwitcher />

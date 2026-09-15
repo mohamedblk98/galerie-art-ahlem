@@ -1,6 +1,4 @@
 // Mur simple blanc — sans texture rugueuse
-import * as THREE from 'three';
-
 export default function BeigeWall() {
   return (
     <mesh position={[0, 0, -0.6]} receiveShadow={false}>

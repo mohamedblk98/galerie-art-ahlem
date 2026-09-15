@@ -1,4 +1,4 @@
-﻿import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { LiquidMetalButton } from '@designcodeio/threeui';
 import '@designcodeio/threeui/style.css';
@@ -64,7 +64,8 @@ function AboutSlideshow() {
             height: '100%',
             objectFit: 'cover',
             opacity: i === current ? 1 : 0,
-            transition: 'opacity 1s ease-in-out',
+            transform: i === current ? 'scale(1)' : 'scale(1.08)',
+            transition: 'opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1), transform 1.2s cubic-bezier(0.23, 1, 0.32, 1)',
           }}
         />
       ))}
@@ -72,12 +73,95 @@ function AboutSlideshow() {
   );
 }
 
+/* ── Floating Particles ── */
+function FloatingParticles() {
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    size: Math.random() * 3 + 1,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: Math.random() * 20 + 15,
+    delay: Math.random() * 10,
+    opacity: Math.random() * 0.3 + 0.05,
+  }));
+
+  return (
+    <div className="floating-particles" aria-hidden="true">
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="floating-particle"
+          style={{
+            width: p.size,
+            height: p.size,
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            animationDuration: `${p.duration}s`,
+            animationDelay: `${p.delay}s`,
+            opacity: p.opacity,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ── Scroll Progress Bar ── */
+function ScrollProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(docHeight > 0 ? scrollTop / docHeight : 0);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="scroll-progress" aria-hidden="true">
+      <div
+        className="scroll-progress__bar"
+        style={{ transform: `scaleX(${progress})` }}
+      />
+    </div>
+  );
+}
+
+/* ── Animated Counter ── */
+function useCountUp(target: number, trigger: boolean, duration = 2000) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!trigger) return;
+    let start: number | null = null;
+    let raf: number;
+
+    const step = (timestamp: number) => {
+      if (start === null) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) raf = requestAnimationFrame(step);
+    };
+
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [target, trigger, duration]);
+
+  return count;
+}
+
+
+
 /**
  * HomePage — Luxurious, artistic and extraordinary landing page.
- * A cinematic experience for Atelier Gallery.
+ * A cinematic experience for Galerie.
  */
 export default function HomePage() {
-  const { t } = useTranslation();
+  const { t, lang } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const hero = useInView(0.1);
@@ -105,6 +189,9 @@ export default function HomePage() {
 
   return (
     <div className={`home-page ${visible ? 'is-visible' : ''}`}>
+      <ScrollProgress />
+      <FloatingParticles />
+
       {/* ── Grain overlay ── */}
       <div className="grain-overlay" aria-hidden="true" />
 
@@ -125,14 +212,15 @@ export default function HomePage() {
       <header className="topbar">
         <div className="topbar__left">
           <Link to="/" className="topbar__logo">
-            <img src="/logo.png" alt="Atelier" className="topbar__logo-img" style={{ height: '60px', width: 'auto' }} />
+            <img src="/logo.png" alt="Galerie" className="topbar__logo-img" style={{ height: '60px', width: 'auto' }} />
           </Link>
         </div>
         <nav className="topbar__nav" aria-label="Navigation">
           <Link to="/" className="topbar__link topbar__link--active">{t('nav_home')}</Link>
           <Link to="/artistes" className="topbar__link">{t('nav_artists')}</Link>
           <Link to="/apropos" className="topbar__link">{t('nav_about')}</Link>
-          <a href="#expositions" className="topbar__link">{t('nav_exhibitions')}</a>
+          <Link to="/expositions" className="topbar__link">{t('nav_exhibitions')}</Link>
+          <Link to="/contact" className="topbar__link">{t('nav_contact')}</Link>
         </nav>
         <div className="topbar__right">
           <LanguageSwitcher />
@@ -157,21 +245,35 @@ export default function HomePage() {
             <span className="hero-decorative-line__dash" />
           </div>
 
-          <span className="home-hero__eyebrow">{t('home_eyebrow')}</span>
+          <span className="home-hero__eyebrow hero-word-reveal" style={{ animationDelay: '0.05s' }}>{t('home_eyebrow')}</span>
 
           <h1 className="home-hero__title">
             <span className="home-hero__title-line">
-              <span>{t('home_title_1')}</span>{' '}
-              <span className="home-hero__title-line--black">{t('home_title_2_dart')}</span>
+              <span className="hero-word-reveal" style={{ animationDelay: '0.2s' }}>{t('home_title_1')}</span>{' '}
+              <span className="home-hero__title-line--black hero-word-reveal" style={{ animationDelay: '0.35s' }}>{t('home_title_2_dart')}</span>
             </span>
-            <span className="home-hero__title-line home-hero__title-line--accent">{t('home_title_2_ahlem')}</span>
+            <span className="home-hero__title-line home-hero__title-line--accent">
+              {lang === 'ar' ? (
+                <span className="home-hero__title-word">{t('home_title_2_ahlem')}</span>
+              ) : (
+                t('home_title_2_ahlem').split('').map((ch, i) => (
+                  <span
+                    key={`${ch}-${i}`}
+                    className="home-hero__title-letter"
+                    style={{ animationDelay: `${0.85 + i * 0.09}s` }}
+                  >
+                    {ch}
+                  </span>
+                ))
+              )}
+            </span>
           </h1>
 
-          <p className="home-hero__subtitle">
+          <p className="home-hero__subtitle hero-word-reveal" style={{ animationDelay: '1.4s' }}>
             {t('home_subtitle')}
           </p>
 
-          <div className="home-hero__actions">
+          <div className="home-hero__actions hero-word-reveal" style={{ animationDelay: '1.6s' }}>
             <Link to="/artistes" className="home-hero__cta-primary">
               <LiquidMetalButton variant="pill" rendering="colored" text={t('home_cta_discover')} />
             </Link>
@@ -185,12 +287,6 @@ export default function HomePage() {
         </div>
 
         <div className="home-hero__side-line" aria-hidden="true" />
-
-        {/* Scroll indicator */}
-        <div className="home-scroll-hint" aria-hidden="true">
-          <div className="home-scroll-hint__line" />
-          <span className="home-scroll-hint__text">{t('home_scroll')}</span>
-        </div>
       </section>
 
       {/* ════════════════════════════════════════════════════
@@ -199,9 +295,9 @@ export default function HomePage() {
       <section className="home-section home-featured" id="artistes" ref={artistsSec.ref}>
         <div className={`home-section__inner ${artistsSec.inView ? 'is-visible' : ''}`}>
           <div className="home-section__header">
-            <span className="home-section__eyebrow">{t('featured_eyebrow')}</span>
-            <h2 className="home-section__title">{t('featured_title')}</h2>
-            <p className="home-section__desc">
+            <span className="home-section__eyebrow reveal-line" style={{ animationDelay: '0.1s' }}>{t('featured_eyebrow')}</span>
+            <h2 className="home-section__title reveal-line" style={{ animationDelay: '0.25s' }}>{t('featured_title')}</h2>
+            <p className="home-section__desc reveal-line" style={{ animationDelay: '0.4s' }}>
               {t('featured_desc')}
             </p>
           </div>
@@ -211,7 +307,7 @@ export default function HomePage() {
               <Link
                 to={`/artistes/${artist.slug}`}
                 key={artist.id}
-                className="home-featured__card"
+                className="home-featured__card card-3d-tilt"
                 style={{ animationDelay: `${0.15 * i}s` }}
               >
                 <div className="home-featured__card-img">
@@ -247,36 +343,36 @@ export default function HomePage() {
         <div className={`home-section__inner ${about.inView ? 'is-visible' : ''}`}>
           <div className="home-about__layout">
             <div className="home-about__text">
-              <span className="home-section__eyebrow">{t('about_eyebrow')}</span>
-              <h2 className="home-section__title home-section__title--left">
+              <span className="home-section__eyebrow reveal-line" style={{ animationDelay: '0.1s' }}>{t('about_eyebrow')}</span>
+              <h2 className="home-section__title home-section__title--left reveal-line" style={{ animationDelay: '0.25s' }}>
                 {t('about_title')}
               </h2>
-              <p className="home-about__paragraph">
+              <p className="home-about__paragraph reveal-line" style={{ animationDelay: '0.4s' }}>
                 {t('about_p1')}
               </p>
-              <p className="home-about__paragraph">
+              <p className="home-about__paragraph reveal-line" style={{ animationDelay: '0.55s' }}>
                 {t('about_p2')}
               </p>
 
               <div className="home-about__stats">
                 <div className="home-about__stat">
-                  <span className="home-about__stat-number">{Artists.length}</span>
+                  <span className="home-about__stat-number">{useCountUp(Artists.length, about.inView)}</span>
                   <span className="home-about__stat-label">{t('about_stat_artists')}</span>
                 </div>
                 <div className="home-about__stat">
                   <span className="home-about__stat-number">
-                    {Artists.reduce((acc, a) => acc + a.oeuvres.length, 0)}
+                    {useCountUp(Artists.reduce((acc, a) => acc + a.oeuvres.length, 0), about.inView)}
                   </span>
                   <span className="home-about__stat-label">{t('about_stat_works')}</span>
                 </div>
                 <div className="home-about__stat">
-                  <span className="home-about__stat-number">3</span>
+                  <span className="home-about__stat-number">{useCountUp(3, about.inView)}</span>
                   <span className="home-about__stat-label">{t('about_stat_cities')}</span>
                 </div>
               </div>
             </div>
 
-            <div className="home-about__visual">
+            <div className="home-about__visual parallax-visual">
               <div className="home-about__visual-frame">
                 <AboutSlideshow />
                 <div className="home-about__visual-border" aria-hidden="true" />
@@ -288,24 +384,24 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════
-          SECTION 4 — EXPOSITIONS
+          SECTION 4 — EXPOSITIONS (Teaser)
           ════════════════════════════════════════════════════ */}
       <section className="home-section home-expos" id="expositions" ref={exhibitions.ref}>
         <div className={`home-section__inner ${exhibitions.inView ? 'is-visible' : ''}`}>
           <div className="home-section__header">
-            <span className="home-section__eyebrow">{t('expo_eyebrow')}</span>
-            <h2 className="home-section__title">{t('expo_title')}</h2>
+            <span className="home-section__eyebrow reveal-line" style={{ animationDelay: '0.1s' }}>{t('expo_eyebrow')}</span>
+            <h2 className="home-section__title reveal-line" style={{ animationDelay: '0.25s' }}>{t('expo_title')}</h2>
           </div>
 
           <div className="home-expos__list">
-            {/* Expo 1 */}
-            <div className="home-expos__item">
+            {/* Expo 1 — teaser */}
+            <div className="home-expos__item expo-reveal" style={{ animationDelay: '0.15s' }}>
               <div className="home-expos__item-date">
                 <span className="home-expos__item-day">15</span>
                 <span className="home-expos__item-month">Sep</span>
               </div>
               <div className="home-expos__item-content">
-                <span className="home-expos__item-status home-expos__item-status--live">{t('expo_now')}</span>
+                <span className="home-expos__item-status home-expos__item-status--live pulse-live">{t('expo_now')}</span>
                 <h3 className="home-expos__item-title">{t('expo_1_title')}</h3>
                 <p className="home-expos__item-desc">
                   {t('expo_1_desc')}
@@ -314,15 +410,15 @@ export default function HomePage() {
                   {t('expo_1_artists')}
                 </span>
               </div>
-              <Link to="/artistes/khaled-sebaa" className="home-expos__item-link">
+              <Link to="/artistes/khaled-sebaa" className="home-expos__item-link magnetic-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
             </div>
 
-            {/* Expo 2 */}
-            <div className="home-expos__item">
+            {/* Expo 2 — teaser */}
+            <div className="home-expos__item expo-reveal" style={{ animationDelay: '0.3s' }}>
               <div className="home-expos__item-date">
                 <span className="home-expos__item-day">01</span>
                 <span className="home-expos__item-month">Oct</span>
@@ -337,35 +433,21 @@ export default function HomePage() {
                   {t('expo_2_artists')}
                 </span>
               </div>
-              <Link to="/artistes/amira-khelifi" className="home-expos__item-link">
+              <Link to="/artistes/amira-khelifi" className="home-expos__item-link magnetic-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
             </div>
 
-            {/* Expo 3 */}
-            <div className="home-expos__item">
-              <div className="home-expos__item-date">
-                <span className="home-expos__item-day">20</span>
-                <span className="home-expos__item-month">Nov</span>
-              </div>
-              <div className="home-expos__item-content">
-                <span className="home-expos__item-status">{t('expo_coming')}</span>
-                <h3 className="home-expos__item-title">{t('expo_3_title')}</h3>
-                <p className="home-expos__item-desc">
-                  {t('expo_3_desc')}
-                </p>
-                <span className="home-expos__item-artists">
-                  {t('expo_3_artists')}
-                </span>
-              </div>
-              <Link to="/artistes/nadia-khatib" className="home-expos__item-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <Link to="/expositions" className="home-featured__more-btn">
+              <span>{t('expositions_cta_all')}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -404,9 +486,9 @@ export default function HomePage() {
           {/* Brand */}
           <div className="home-footer__brand">
             <div className="home-footer__logo-mark">
-              <img src="/logod.png" alt="Atelier d'art Ahlem" className="home-footer__logo-img" />
+              <img src="/logod.png" alt="Galerie d'art Ahlem" className="home-footer__logo-img" />
             </div>
-            <p className="home-footer__logo-name">Atelier d'art Ahlem</p>
+            <p className="home-footer__logo-name">Galerie d'art Ahlem</p>
             <p className="home-footer__tagline">
               {t('footer_tagline')}
             </p>
@@ -417,18 +499,16 @@ export default function HomePage() {
             <h4 className="home-footer__heading">{t('footer_nav')}</h4>
             <Link to="/" className="home-footer__link">{t('nav_home')}</Link>
             <Link to="/artistes" className="home-footer__link">{t('nav_artists')}</Link>
-            <a href="#expositions" className="home-footer__link">{t('nav_exhibitions')}</a>
+            <Link to="/expositions" className="home-footer__link">{t('nav_exhibitions')}</Link>
             <Link to="/apropos" className="home-footer__link">{t('nav_about')}</Link>
           </div>
 
           {/* Contact */}
           <div className="home-footer__col">
             <h4 className="home-footer__heading">{t('footer_contact')}</h4>
-            <span className="home-footer__text">{t('footer_address_1')}</span>
             <span className="home-footer__text">{t('footer_address_2')}</span>
-            <span className="home-footer__text">{t('footer_address_3')}</span>
-            <a href="mailto:contact@atelier-gallery.com" className="home-footer__link">
-              contact@atelier-gallery.com
+            <a href="mailto:contact@galerie-gallery.com" className="home-footer__link">
+              contact@galerie-gallery.com
             </a>
           </div>
 
@@ -443,7 +523,7 @@ export default function HomePage() {
 
         <div className="home-footer__bottom">
           <span className="home-footer__copyright">
-            © 2026 Atelier d'Art Ahlem. {t('footer_copyright').replace('© 2026 Atelier Gallery. ', '')}
+            © 2026 Galerie d'Art Ahlem. {t('footer_copyright').replace('© 2026 Galerie. ', '')}
           </span>
         </div>
       </footer>

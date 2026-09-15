@@ -1,13 +1,16 @@
 // Plinthe murale — bande au pied du mur, gris foncé comme le carrelage
 
-export default function WallBaseboard() {
+import { forwardRef } from 'react';
+import * as THREE from 'three';
+
+const WallBaseboard = forwardRef<THREE.Group>(function WallBaseboard(_props, ref) {
   // Mur à z=-0.6, sol horizontal à y=-1.195
   // Plinthe : longueur 40, hauteur 0.18, profondeur 0.07, posée sur le sol
   const y = -1.195 + 0.09; // sol + moitié hauteur
   const z = -0.6 + 0.035; // légèrement devant le mur
 
   return (
-    <group>
+    <group ref={ref}>
       {/* Corps principal — gris foncé carrelage, mat */}
       <mesh position={[0, y, z]} castShadow={false} receiveShadow={false}>
         <boxGeometry args={[128, 0.18, 0.07]} />
@@ -20,4 +23,6 @@ export default function WallBaseboard() {
       </mesh>
     </group>
   );
-}
+});
+
+export default WallBaseboard;

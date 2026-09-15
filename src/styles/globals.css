@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import "tailwindcss";
 
 :root {
   /* ── Palette ── */
@@ -7,7 +7,7 @@
   --color-stone: #D8D0C4;
   --color-charcoal: #171716;
   --color-wood-dark: #4B3020;
-  --color-gold-mat: #B99A67;
+  --color-gold-mat: #D2A02A;
 
   /* ── Dark Luxury Palette ── */
   --dark-void: #060611;
@@ -17,8 +17,8 @@
   --text-light: #F5F1EA;
   --text-mid: #8A8A8A;
   --text-dim: #4A4A4A;
-  --accent-gold: #B99A67;
-  --accent-gold-dim: rgba(185, 154, 103, 0.15);
+  --accent-gold: #D2A02A;
+  --accent-gold-dim: rgba(206, 158, 40, 0.15);
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.07);
   --glass-hover: rgba(255, 255, 255, 0.06);
@@ -55,6 +55,15 @@
   /* ── Spacing ── */
   --page-padding: clamp(1.5rem, 4vw, 5rem);
   --max-width: 1440px;
+
+  /* ── Refined Warm Palette ── */
+  --bg-warm: #FFFFFF;
+  --topbar-bg: linear-gradient(120deg, #D9AC3C 0%, #C89A28 35%, #B08420 72%, #8E6A12 100%);
+  --ink: #26211B;
+  --ink-soft: #3E372E;
+  --muted: #857B6D;
+  --muted-soft: #A79C8B;
+  --hairline: rgba(38, 33, 27, 0.10);
 }
 
 *,
@@ -73,13 +82,36 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--dark-void);
+  background-color: #FFFFFF;
   color: var(--text-light);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* ── Topbar depth (shared across pages) ── */
+.topbar {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 244, 214, 0.35),
+    inset 0 -1px 0 rgba(66, 47, 22, 0.18),
+    0 1px 0 rgba(255, 248, 224, 0.4),
+    0 14px 34px rgba(150, 108, 22, 0.3);
+}
+
+/* Keyboard focus ring */
+.topbar a:focus-visible,
+.lang-switcher__btn:focus-visible {
+  outline: 2px solid #FFFDF6;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.topbar__link,
+.topbar__cta,
+.lang-switcher {
+  transition: all 0.3s var(--ease-smooth);
 }
 
 a {
@@ -120,11 +152,42 @@ img {
 }
 
 /* ══════════════════════════════════════════════════════════
-   RTL SUPPORT (Arabic)
+   RTL SUPPORT (Arabic) — Luxurious Arabic Typography
+   Amiri (serif) for titles, IBM Plex Sans Arabic for body
    ══════════════════════════════════════════════════════════ */
 
 [dir="rtl"] {
-  font-family: 'Manrope', 'Noto Sans Arabic', 'Arial', sans-serif;
+  font-family: 'IBM Plex Sans Arabic', 'Amiri', 'Manrope', sans-serif;
+}
+
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] .home-hero__title,
+[dir="rtl"] .home-section__title,
+[dir="rtl"] .apropos-section__title,
+[dir="rtl"] .hero__title {
+  font-family: 'Amiri', 'Cormorant Garamond', serif;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+[dir="rtl"] .home-hero__title-line--accent {
+  font-family: 'Amiri', serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+[dir="rtl"] .home-hero__subtitle,
+[dir="rtl"] .home-section__desc,
+[dir="rtl"] .home-about__paragraph,
+[dir="rtl"] p {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  line-height: 2;
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  text-wrap: balance;
 }
 
 [dir="rtl"] .topbar__nav {
@@ -133,6 +196,17 @@ img {
 
 [dir="rtl"] .topbar__cta {
   direction: rtl;
+}
+
+/* ── Navbar right cluster: never let CTA & language switcher touch ── */
+.topbar__right {
+  gap: 0.9rem;
+}
+
+/* RTL (Arabic): flex order flips, so the switcher margin flips too */
+[dir="rtl"] .lang-switcher {
+  margin-right: 0;
+  margin-left: 0.9rem;
 }
 
 /* Flip navigation arrows for RTL */
@@ -192,6 +266,6 @@ img {
 
 /* Selection */
 ::selection {
-  background: rgba(185, 154, 103, 0.2);
+  background: rgba(206, 158, 40, 0.2);
   color: var(--text-light);
 }

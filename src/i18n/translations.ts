@@ -7,16 +7,16 @@ const translations = {
     nav_artists: 'Artistes',
     nav_about: 'A propos',
     nav_exhibitions: 'Expositions',
-    nav_visit: 'Lookbook',
+    nav_visit: 'Catalogue',
     nav_gallery: 'Galerie',
 
     // ── Home Page ──
     home_eyebrow: "Galerie d'Art Contemporain",
-    home_title_1: 'Atelier',
+    home_title_1: 'Galerie',
     home_title_2_dart: "D'Art",
     home_title_2_ahlem: 'Ahlem',
     home_subtitle:
-      "Une expérience immersive où matière, lumière et mémoire se rejoignent pour célébrer l'art contemporain du monde arabe.",
+      'Une expérience immersive où matière, lumière et mémoire se rejoignent pour célébrer l’art contemporain algérien.',
     home_cta_discover: 'Découvrir les artistes',
     home_cta_enter: 'Entrer dans la galerie',
     home_scroll: 'Défiler',
@@ -33,7 +33,7 @@ const translations = {
     about_eyebrow: 'A propos',
     about_title: 'La galerie',
     about_p1:
-      "Atelier Gallery est un espace d'exposition dédié à l'art contemporain du monde arabe. Nous révélons les voix créatives qui dialoguent entre traditions millénaires et expression moderne.",
+      "Galerie d'art Ahlem est un espace d'exposition dédié à l'art contemporain du monde arabe. Nous révélons les voix créatives qui dialoguent entre traditions millénaires et expression moderne.",
     about_p2:
       "Chaque œuvre est une invitation au voyage — à travers les matières, les lumières et les mémoires qui façonnent l'identité artistique du Maghreb et du Moyen-Orient.",
     about_stat_artists: 'Artistes',
@@ -52,11 +52,39 @@ const translations = {
     expo_2_title: 'Formes Hybrides',
     expo_2_desc:
       'Sculptures contemporaines entre organique et minéral, résonances du bassin méditerranéen.',
-    expo_2_artists: 'Amira Khelifi · Leila Zerhouni · Omar Benali',
+    expo_2_artists: 'Djamel Zerouk · Halim Sellami',
     expo_3_title: 'Lumière Invisibles',
     expo_3_desc:
       'Installations immersives où son, lumière et espace se répondent pour transformer les galeries.',
-    expo_3_artists: 'Nadia Khatib · Youssef El Mansouri',
+    expo_3_artists: 'Mohamed Boucetta · Khaled Sebaa',
+
+    // ── Expositions Page ──
+    expositions_hero_eyebrow: 'Programmation',
+    expositions_hero_title: 'Expositions',
+    expositions_hero_subtitle: "Plongez au cœur de nos expositions — où chaque œuvre raconte une histoire, chaque salle ouvre un dialogue.",
+    expositions_filter_all: 'Toutes',
+    expositions_filter_current: 'En cours',
+    expositions_filter_upcoming: 'À venir',
+    expositions_filter_past: 'Passées',
+    expositions_countdown: 'J-',
+    expositions_cta_gallery: 'Voir la galerie →',
+    expositions_cta_all: 'Voir toutes les expositions →',
+    expositions_lieu: 'Lieu',
+    expositions_commissaire: 'Commissaire',
+    expositions_dates: 'Dates',
+    expositions_modal_close: 'Fermer',
+    expo_1_lieu: 'Grande Galerie — Alger',
+    expo_1_dateFin: '30 Sep 2026',
+    expo_1_commissaire: 'Kamel Haddad',
+    expo_1_image: '/expostions/exposition1.jpg',
+    expo_2_lieu: 'Salle Lumière — Alger',
+    expo_2_dateFin: '15 Nov 2026',
+    expo_2_commissaire: 'Kamel Haddad',
+    expo_2_image: '/expostions/exposition1.jpg',
+    expo_3_lieu: 'Pavillon Noir — Alger',
+    expo_3_dateFin: '20 Déc 2026',
+    expo_3_commissaire: 'Kamel Haddad',
+    expo_3_image: '/expostions/exposition1.jpg',
 
     // ── Newsletter ──
     newsletter_eyebrow: 'Restez connecté',
@@ -66,16 +94,40 @@ const translations = {
     newsletter_placeholder: 'votre@email.com',
     newsletter_aria: 'Adresse email',
     newsletter_submit: "S'inscrire",
+    newsletter_error: 'Veuillez entrer une adresse email valide.',
+    newsletter_success: 'Merci — vous êtes inscrit(e).',
 
     // ── Footer ──
-    footer_tagline: "Galerie d'art contemporain du monde arabe.",
+    footer_tagline: 'Une expérience immersive où matière, lumière et mémoire se rejoignent pour célébrer l’art contemporain algérien.',
     footer_nav: 'Navigation',
     footer_contact: 'Contact',
-    footer_address_1: 'Paris, France',
     footer_address_2: 'Alger, Algérie',
-    footer_address_3: 'Tunis, Tunisie',
     footer_follow: 'Suivez-nous',
-    footer_copyright: '© 2026 Atelier Gallery. Tous droits réservés.',
+    footer_copyright: '© 2026 Galerie d'Art Ahlem. Tous droits réservés.',
+
+    // ── Contact Page ──
+    nav_contact: 'Contact',
+    contact_eyebrow: 'Contact',
+    contact_title: 'Contactez-nous',
+    contact_subtitle: "Une question, une collaboration, une visite ? Écrivez-nous — nous vous répondons sous 24h.",
+    contact_label_name: 'Nom',
+    contact_label_email: 'Email',
+    contact_label_subject: 'Sujet',
+    contact_label_message: 'Message',
+    contact_placeholder_name: 'Votre nom',
+    contact_placeholder_email: 'votre@email.com',
+    contact_placeholder_subject: 'Sujet de votre message',
+    contact_placeholder_message: 'Votre message...',
+    contact_submit: 'Envoyer',
+    contact_success: 'Merci — votre message a été envoyé.',
+    contact_error_name: 'Veuillez entrer votre nom.',
+    contact_error_email: 'Veuillez entrer un email valide.',
+    contact_error_message: 'Veuillez entrer votre message.',
+    contact_info_address: 'Adresse',
+    contact_info_email: 'Email',
+    contact_info_phone: 'Téléphone',
+    contact_info_hours: 'Horaires',
+    contact_hours: 'Lun — Sam, 10h — 19h',
 
     // ── Artists Page ──
     artists_title: 'Artistes',
@@ -102,6 +154,9 @@ const translations = {
     gallery_nav_aria: 'Navigation des oeuvres',
     gallery_prev: 'Oeuvre precedente',
     gallery_next: 'Oeuvre suivante',
+
+    // ── Hero Spotlight ──
+    hero_spotlight: 'À la une',
 
     // ── Loading ──
     loading: 'Chargement',
@@ -170,16 +225,16 @@ const translations = {
     nav_artists: 'Artists',
     nav_about: 'About',
     nav_exhibitions: 'Exhibitions',
-    nav_visit: 'Lookbook',
+    nav_visit: 'Catalogue',
     nav_gallery: 'Gallery',
 
     // ── Home Page ──
     home_eyebrow: 'Contemporary Art Gallery',
-    home_title_1: 'Atelier',
+    home_title_1: 'Galerie',
     home_title_2_dart: "D'Art",
     home_title_2_ahlem: 'Ahlem',
     home_subtitle:
-      'An immersive experience where matter, light, and memory come together to celebrate contemporary art from the Arab world.',
+      'An immersive experience where matter, light, and memory come together to celebrate Algerian contemporary art.',
     home_cta_discover: 'Discover the artists',
     home_cta_enter: 'Enter the gallery',
     home_scroll: 'Scroll',
@@ -196,7 +251,7 @@ const translations = {
     about_eyebrow: 'About',
     about_title: 'The gallery',
     about_p1:
-      'Atelier Gallery is an exhibition space dedicated to contemporary art from the Arab world. We reveal creative voices that dialogue between ancient traditions and modern expression.',
+      'Galerie d'Art Ahlem is an exhibition space dedicated to contemporary art from the Arab world. We reveal creative voices that dialogue between ancient traditions and modern expression.',
     about_p2:
       'Each work is an invitation to travel — through the materials, lights, and memories that shape the artistic identity of the Maghreb and the Middle East.',
     about_stat_artists: 'Artists',
@@ -215,11 +270,39 @@ const translations = {
     expo_2_title: 'Hybrid Forms',
     expo_2_desc:
       'Contemporary sculptures between organic and mineral, resonances of the Mediterranean basin.',
-    expo_2_artists: 'Amira Khelifi · Leila Zerhouni · Omar Benali',
+    expo_2_artists: 'Djamel Zerouk · Halim Sellami',
     expo_3_title: 'Invisible Light',
     expo_3_desc:
       'Immersive installations where sound, light, and space respond to each other to transform galleries.',
-    expo_3_artists: 'Nadia Khatib · Youssef El Mansouri',
+    expo_3_artists: 'Mohamed Boucetta · Khaled Sebaa',
+
+    // ── Expositions Page ──
+    expositions_hero_eyebrow: 'Programming',
+    expositions_hero_title: 'Exhibitions',
+    expositions_hero_subtitle: 'Dive into our exhibitions — where each work tells a story, each room opens a dialogue.',
+    expositions_filter_all: 'All',
+    expositions_filter_current: 'Current',
+    expositions_filter_upcoming: 'Upcoming',
+    expositions_filter_past: 'Past',
+    expositions_countdown: 'D-',
+    expositions_cta_gallery: 'See gallery →',
+    expositions_cta_all: 'See all exhibitions →',
+    expositions_lieu: 'Venue',
+    expositions_commissaire: 'Curator',
+    expositions_dates: 'Dates',
+    expositions_modal_close: 'Close',
+    expo_1_lieu: 'Grand Gallery — Algiers',
+    expo_1_dateFin: 'Sep 30, 2026',
+    expo_1_commissaire: 'Kamel Haddad',
+    expo_1_image: '/expostions/exposition1.jpg',
+    expo_2_lieu: 'Light Hall — Algiers',
+    expo_2_dateFin: 'Nov 15, 2026',
+    expo_2_commissaire: 'Kamel Haddad',
+    expo_2_image: '/expostions/exposition1.jpg',
+    expo_3_lieu: 'Black Pavilion — Algiers',
+    expo_3_dateFin: 'Dec 20, 2026',
+    expo_3_commissaire: 'Kamel Haddad',
+    expo_3_image: '/expostions/exposition1.jpg',
 
     // ── Newsletter ──
     newsletter_eyebrow: 'Stay connected',
@@ -229,16 +312,40 @@ const translations = {
     newsletter_placeholder: 'your@email.com',
     newsletter_aria: 'Email address',
     newsletter_submit: 'Sign up',
+    newsletter_error: 'Please enter a valid email address.',
+    newsletter_success: 'Thank you — you are subscribed.',
 
     // ── Footer ──
-    footer_tagline: 'Contemporary art gallery of the Arab world.',
+    footer_tagline: 'An immersive experience where matter, light, and memory come together to celebrate Algerian contemporary art.',
     footer_nav: 'Navigation',
     footer_contact: 'Contact',
-    footer_address_1: 'Paris, France',
     footer_address_2: 'Algiers, Algeria',
-    footer_address_3: 'Tunis, Tunisia',
     footer_follow: 'Follow us',
-    footer_copyright: '© 2026 Atelier Gallery. All rights reserved.',
+    footer_copyright: '© 2026 Galerie d'Art Ahlem. All rights reserved.',
+
+    // ── Contact Page ──
+    nav_contact: 'Contact',
+    contact_eyebrow: 'Contact',
+    contact_title: 'Contact Us',
+    contact_subtitle: 'A question, a collaboration, a visit? Write to us — we reply within 24h.',
+    contact_label_name: 'Name',
+    contact_label_email: 'Email',
+    contact_label_subject: 'Subject',
+    contact_label_message: 'Message',
+    contact_placeholder_name: 'Your name',
+    contact_placeholder_email: 'your@email.com',
+    contact_placeholder_subject: 'Subject',
+    contact_placeholder_message: 'Your message...',
+    contact_submit: 'Send',
+    contact_success: 'Thank you — your message has been sent.',
+    contact_error_name: 'Please enter your name.',
+    contact_error_email: 'Please enter a valid email.',
+    contact_error_message: 'Please enter your message.',
+    contact_info_address: 'Address',
+    contact_info_email: 'Email',
+    contact_info_phone: 'Phone',
+    contact_info_hours: 'Hours',
+    contact_hours: 'Mon — Sat, 10am — 7pm',
 
     // ── Artists Page ──
     artists_title: 'Artists',
@@ -265,6 +372,9 @@ const translations = {
     gallery_nav_aria: 'Artwork navigation',
     gallery_prev: 'Previous artwork',
     gallery_next: 'Next artwork',
+
+    // ── Hero Spotlight ──
+    hero_spotlight: 'Featured',
 
     // ── Loading ──
     loading: 'Loading',
@@ -333,16 +443,16 @@ const translations = {
     nav_artists: 'الفنانون',
     nav_about: 'حول',
     nav_exhibitions: 'المعارض',
-    nav_visit: 'Lookbook',
+    nav_visit: 'كتيب',
     nav_gallery: 'المعرض',
 
     // ── Home Page ──
     home_eyebrow: 'معرض الفن المعاصر',
-    home_title_1: 'أتيليه',
+    home_title_1: 'ورشة',
     home_title_2_dart: 'فنّ',
-    home_title_2_ahlem: 'أحمد',
+    home_title_2_ahlem: 'أحلام',
     home_subtitle:
-      'تجربة غامرة حيث تتلاقى المادة والضوء والذاكرة للاحتفال بالفن المعاصر من العالم العربي.',
+      'تجربة غامرة حيث تتلاقى المادة والضوء والذاكرة للاحتفال بالفن المعاصر الجزائري.',
     home_cta_discover: 'اكتشف الفنانون',
     home_cta_enter: 'ادخل المعرض',
     home_scroll: 'تمرير',
@@ -359,7 +469,7 @@ const translations = {
     about_eyebrow: 'حول',
     about_title: 'المعرض',
     about_p1:
-      'أتيليه جاليري هو معرض مخصص للفن المعاصر من العالم العربي. نكشف الأصوات الإبداعية التي تحت Dialog between التقاليد القديمة والتعبير الحديث.',
+      'ورشة جاليري هو معرض مخصص للفن المعاصر من العالم العربي. نكشف الأصوات الإبداعية التي تحاور بين التقاليد القديمة والتعبير الحديث.',
     about_p2:
       'كل عمل هو دعوة للسفر — عبر المواد والأضواء والذكريات التي تشكل الهوية الفنية للمغرب العربي والشرق الأوسط.',
     about_stat_artists: 'فنانون',
@@ -378,11 +488,39 @@ const translations = {
     expo_2_title: 'أشكال هجينة',
     expo_2_desc:
       'منحوتات معاصرة بين العضوي والمعادن، صدى حوض البحر الأبيض المتوسط.',
-    expo_2_artists: 'أميرة خليفي · ليلى زرهوني عمر بن علي',
+    expo_2_artists: 'جمال زروق · حليم سلامي',
     expo_3_title: 'ضوء غير مرئي',
     expo_3_desc:
       'تركيبات غامرة حيث يتراس الصوت والضوء والمكان لتحويل المعارض.',
-    expo_3_artists: 'نادية خاتيب · يوسف المنصوري',
+    expo_3_artists: 'محمد بوعتة · خالد سبع',
+
+    // ── Expositions Page ──
+    expositions_hero_eyebrow: 'البرنامج',
+    expositions_hero_title: 'المعارض',
+    expositions_hero_subtitle: 'انغمس في معارضنا — حيث كل عمل يروي قصة وكل قاعة تفتح حواراً.',
+    expositions_filter_all: 'الكل',
+    expositions_filter_current: 'حالية',
+    expositions_filter_upcoming: 'قادمة',
+    expositions_filter_past: 'سابقة',
+    expositions_countdown: 'باقي',
+    expositions_cta_gallery: 'عرض المعرض ←',
+    expositions_cta_all: 'عرض كل المعارض ←',
+    expositions_lieu: 'المكان',
+    expositions_commissaire: 'القيّم',
+    expositions_dates: 'التواريخ',
+    expositions_modal_close: 'إغلاق',
+    expo_1_lieu: 'القاعة الكبرى — الجزائر',
+    expo_1_dateFin: '30 سبتمبر 2026',
+    expo_1_commissaire: 'كمال حداد',
+    expo_1_image: '/expostions/exposition1.jpg',
+    expo_2_lieu: 'قاعة النور — الجزائر',
+    expo_2_dateFin: '15 نوفمبر 2026',
+    expo_2_commissaire: 'كمال حداد',
+    expo_2_image: '/expostions/exposition1.jpg',
+    expo_3_lieu: 'الجناح الأسود — الجزائر',
+    expo_3_dateFin: '20 ديسمبر 2026',
+    expo_3_commissaire: 'كمال حداد',
+    expo_3_image: '/expostions/exposition1.jpg',
 
     // ── Newsletter ──
     newsletter_eyebrow: 'ابق على تواصل',
@@ -392,16 +530,40 @@ const translations = {
     newsletter_placeholder: 'بريدك@الإلكتروني.com',
     newsletter_aria: 'البريد الإلكتروني',
     newsletter_submit: 'اشترك',
+    newsletter_error: 'الرجاء إدخال بريد إلكتروني صحيح.',
+    newsletter_success: 'شكراً — تم اشتراكك.',
 
     // ── Footer ──
-    footer_tagline: 'معرض فن معاصر من العالم العربي.',
+    footer_tagline: 'تجربة غامرة حيث تتلاقى المادة والضوء والذاكرة للاحتفال بالفن المعاصر الجزائري.',
     footer_nav: 'التنقل',
     footer_contact: 'اتصل بنا',
-    footer_address_1: 'باريس، فرنسا',
     footer_address_2: 'الجزائر العاصمة',
-    footer_address_3: 'تونس، تونس',
     footer_follow: 'تابعنا',
-    footer_copyright: '© 2026 أتيليه جاليري. جميع الحقوق محفوظة.',
+    footer_copyright: '© 2026 ورشة جاليري. جميع الحقوق محفوظة.',
+
+    // ── Contact Page ──
+    nav_contact: 'اتصل بنا',
+    contact_eyebrow: 'تواصل',
+    contact_title: 'اتصل بنا',
+    contact_subtitle: 'سؤال، تعاون، زيارة؟ راسلنا — نرد خلال 24 ساعة.',
+    contact_label_name: 'الاسم',
+    contact_label_email: 'البريد',
+    contact_label_subject: 'الموضوع',
+    contact_label_message: 'الرسالة',
+    contact_placeholder_name: 'اسمك',
+    contact_placeholder_email: 'بريدك@الإلكتروني.com',
+    contact_placeholder_subject: 'موضوع رسالتك',
+    contact_placeholder_message: 'رسالتك...',
+    contact_submit: 'إرسال',
+    contact_success: 'شكراً — تم إرسال رسالتك.',
+    contact_error_name: 'الرجاء إدخال اسمك.',
+    contact_error_email: 'الرجاء إدخال بريد صحيح.',
+    contact_error_message: 'الرجاء إدخال رسالتك.',
+    contact_info_address: 'العنوان',
+    contact_info_email: 'البريد',
+    contact_info_phone: 'الهاتف',
+    contact_info_hours: 'الساعات',
+    contact_hours: 'الإثنين — السبت، 10ص — 7م',
 
     // ── Artists Page ──
     artists_title: 'الفنانون',
@@ -428,6 +590,9 @@ const translations = {
     gallery_nav_aria: 'تنقل بين الأعمال',
     gallery_prev: 'العمل السابق',
     gallery_next: 'العمل التالي',
+
+    // ── Hero Spotlight ──
+    hero_spotlight: 'في الواجهة',
 
     // ── Loading ──
     loading: 'جاري التحميل',
@@ -466,14 +631,14 @@ const translations = {
     apropos_hero_subtitle:
       'مساحة مخصصة للفن والإبداع والتعبير الفني.',
     apropos_mission_eyebrow: 'حول',
-    apropos_mission_title: 'عن غاليري أحمد',
+    apropos_mission_title: 'عن غاليري أحلام',
     apropos_mission_p1:
-      'غاليري أحمد هو مساحة مخصصة للفن والإبداع والتعبير الفني. مهمتنا هي إبراز الفنانين الموهوبين وإنشاء لقاء بين أعمالهم وجمهور شغوف بالفن.',
+      'غاليري أحلام هو مساحة مخصصة للفن والإبداع والتعبير الفني. مهمتنا هي إبراز الفنانين الموهوبين وإنشاء لقاء بين أعمالهم وجمهور شغوف بالفن.',
     apropos_mission_p2:
-      'من خلال مجموعة منتقاة بعناية من الأعمال المعاصرة والأصلية، تُحيي غاليري أحمد تنوع الأساليب والتقنيات والعوالم الفنية.',
+      'من خلال مجموعة منتقاة بعناية من الأعمال المعاصرة والأصلية، تُحيي غاليري أحلام تنوع الأساليب والتقنيات والعوالم الفنية.',
     apropos_mission_p3:
       'نؤمن بأن كل عمل يروي قصة، وينقل مشاعر، ويقدم طريقة جديدة للنظر إلى العالم.',
-    apropos_mission_bold: 'غاليري أحمد — مساحة حيث ي الحياة للفن.',
+    apropos_mission_bold: 'غاليري أحلام — مساحة حيث يحيا الفن.',
     apropos_values_eyebrow: 'قيمنا',
     apropos_values_title: 'ما يوجهنا',
     apropos_value_1_title: 'الأصالة',

@@ -2,6 +2,8 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import type { Artist } from '../types';
 import { useTranslation } from '../i18n';
+import ArtistInfoModal from './ArtistInfoModal';
+import '../styles/artist-modal.css';
 
 interface ProfileCarouselProps {
   artists: Artist[];
@@ -17,7 +19,13 @@ export default function ProfileCarousel({ artists, onActiveChange }: ProfileCaro
   const { t } = useTranslation();
   const [activeIdx, setActiveIdx] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [infoArtist, setInfoArtist] = useState<Artist | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (infoArtist) window.dispatchEvent(new Event('artist-modal-open'));
+    else window.dispatchEvent(new Event('artist-modal-close'));
+  }, [infoArtist]);
 
   const handleCardClick = useCallback((index: number) => {
     if (index === activeIdx || isTransitioning) return;
@@ -159,10 +167,10 @@ export default function ProfileCarousel({ artists, onActiveChange }: ProfileCaro
 
               {/* Bottom Bar — Buttons spread left/right */}
               <div className="profile-card__bottom">
-                <Link
-                  to={`/artistes/${artist.slug}`}
+                <button
+                  type="button"
                   className="profile-card__info-btn"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => { e.stopPropagation(); setInfoArtist(artist); }}
                 >
                   <svg className="profile-card__info-btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"/>
@@ -170,7 +178,7 @@ export default function ProfileCarousel({ artists, onActiveChange }: ProfileCaro
                     <path d="M12 8h.01"/>
                   </svg>
                   <span className="profile-card__info-btn-text">{t('artists_infos')}</span>
-                </Link>
+                </button>
                 <Link
                   to={`/artistes/${artist.slug}`}
                   className="profile-card__gallery-btn"
@@ -202,6 +210,8 @@ export default function ProfileCarousel({ artists, onActiveChange }: ProfileCaro
           />
         ))}
       </div>
+
+      <ArtistInfoModal artist={infoArtist} onClose={() => setInfoArtist(null)} />
     </div>
   );
 }
