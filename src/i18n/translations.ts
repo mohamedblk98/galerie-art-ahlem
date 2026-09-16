@@ -103,7 +103,7 @@ const translations = {
     footer_contact: 'Contact',
     footer_address_2: 'Alger, Algérie',
     footer_follow: 'Suivez-nous',
-    footer_copyright: '© 2026 Galerie d'Art Ahlem. Tous droits réservés.',
+    footer_copyright: "© 2026 Galerie d'Art Ahlem. Tous droits réservés.",
 
     // ── Contact Page ──
     nav_contact: 'Contact',
@@ -251,7 +251,7 @@ const translations = {
     about_eyebrow: 'About',
     about_title: 'The gallery',
     about_p1:
-      'Galerie d'Art Ahlem is an exhibition space dedicated to contemporary art from the Arab world. We reveal creative voices that dialogue between ancient traditions and modern expression.',
+      "Galerie d'Art Ahlem is an exhibition space dedicated to contemporary art from the Arab world. We reveal creative voices that dialogue between ancient traditions and modern expression.",
     about_p2:
       'Each work is an invitation to travel — through the materials, lights, and memories that shape the artistic identity of the Maghreb and the Middle East.',
     about_stat_artists: 'Artists',
@@ -321,7 +321,7 @@ const translations = {
     footer_contact: 'Contact',
     footer_address_2: 'Algiers, Algeria',
     footer_follow: 'Follow us',
-    footer_copyright: '© 2026 Galerie d'Art Ahlem. All rights reserved.',
+    footer_copyright: "© 2026 Galerie d'Art Ahlem. All rights reserved.",
 
     // ── Contact Page ──
     nav_contact: 'Contact',
